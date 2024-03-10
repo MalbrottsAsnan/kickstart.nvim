@@ -1,6 +1,6 @@
-# How to install and setup NVim
+# How to install and setup Neovim
 
-## Installing Nvim
+## Installing Neovim
 
 Follow these steps to install Neovim on a new machine:
 
