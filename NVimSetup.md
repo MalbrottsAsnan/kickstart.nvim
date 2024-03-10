@@ -15,11 +15,18 @@ Follow these steps to install Neovim on a new machine:
 
 https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Hack.zip
 
-## Nerd font and appearence
+## Additional install
 
 https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Hack.zip
 
-**NOTE:** Use "HackNerdFont-Regular.ttf" and change the font in windows terminal
+**NOTE:** Install only the ```HackNerdFont-Regular.ttf```
+
+## Windows terminal
+
+Color scheme: ```Campbell```
+Font face: ```Hack Nerd Font```
+
+
 
 ### Install Neovim
 
