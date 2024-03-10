@@ -1,6 +1,8 @@
-# Firstly: How do I install and setup Neovim?
+## **Optional:** How Do I Install and Setup Neovim?
 
-## Installing Neovim
+<details><summary>Windows Manual</summary>
+
+## WSL Setup
 
 Follow these steps to install Neovim on a new machine:
 
@@ -11,20 +13,17 @@ Follow these steps to install Neovim on a new machine:
 * Build: ```make CMAKE_BUILD_TYPE=Release```
 * Install: ```sudo make install```
 
-**NOTE:** Before installing Neovim, please make sure the following external dependencies are installed: ```git```, ```make```, ```cmake```, ```unzip```, ```gcc```, ```ripgrep```
+## Windows terminal preferences
 
-## Additional install
+Linux profile settings:
+* Color scheme: ```Campbell```
+* Font face: ```Hack Nerd Font``` - [Download](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Hack.zip "")
 
-https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Hack.zip
+**Note:** Install only the ```HackNerdFont-Regular.ttf```
 
-**NOTE:** Install only the ```HackNerdFont-Regular.ttf```
+---
 
-## Windows terminal
-
-Color scheme: ```Campbell```
-Font face: ```Hack Nerd Font```
-
-
+</details>
 
 # kickstart.nvim
 
