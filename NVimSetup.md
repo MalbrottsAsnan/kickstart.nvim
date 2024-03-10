@@ -1,12 +1,16 @@
-# kickstart.nvim
+# How to install and setup NVim
 
-## Introduction
+## Installing Nvim
 
-A starting point for Neovim that is:
+Follow these steps to install Neovim on a new machine:
 
-* Small
-* Single-file
-* Completely Documented
+* Install dependencies: sudo apt-get install ninja-build gettext cmake unzip curl
+* Clone Neovim repo: git clone https://github.com/neovim/neovim.git
+* CD into directory: cd neovim
+* Checkout stable version (0.9.X): git checkout v0.9.1
+* Build: make CMAKE_BUILD_TYPE=Release
+* Install: sudo make install
+
 
 **NOT** a Neovim distribution, but instead a starting point for your configuration.
 
