@@ -13,8 +13,6 @@ Follow these steps to install Neovim on a new machine:
 
 **NOTE:** Before installing Neovim, please make sure the following external dependencies are installed: ```git```, ```make```, ```cmake```, ```unzip```, ```gcc```, ```ripgrep```
 
-https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Hack.zip
-
 ## Additional install
 
 https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Hack.zip
