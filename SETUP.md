@@ -2,6 +2,11 @@
 ### By: MålbrottsÅsnan
 <br>
 
+## Prerequisites
+
+1. Install hacks: ```sudo apt install cmatrix```
+2. Run hacks: ```cmatrix```
+
 ## Installation
 
 Follow these steps to install Neovim on a new machine:
