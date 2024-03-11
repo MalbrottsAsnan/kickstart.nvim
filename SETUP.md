@@ -10,7 +10,7 @@ Follow these steps to install Neovim on a new machine:
 3. Install dependencies: ```sudo apt-get install ninja-build gettext cmake unzip curl```
 4. CD into home: ```cd $HOME/```
   
-    **Note:** If CMake is already installed, clear the cache before proceding: ```sudo rm -r $HOME/neovim/build/```
+    **Note:** If NVim has already been built, clear the cache before proceding: ```sudo rm -r $HOME/neovim/build/```
 
 5. Clone Neovim repo: ```git clone https://github.com/neovim/neovim```
 6. CD into directory: ```cd neovim```
