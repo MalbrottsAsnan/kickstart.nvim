@@ -6,7 +6,8 @@
 
 Follow these steps to install Neovim on a new machine:
 
-1. Install dependencies: ```sudo apt-get install ninja-build gettext cmake unzip curl```
+1. Update and upgrade packages: ```sudo apt update && sudo apt upgrade```
+2. Install dependencies: ```sudo apt-get install ninja-build gettext cmake unzip curl```
   
     **Note:** If CMake is already installed, clear the cache before proceding: ```rm -r build/  # clear the CMake cache```
 
