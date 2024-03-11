@@ -1,6 +1,4 @@
-## **Optional:** How to Setup Neovim?
-
-[](SETUP.md)
+# **Optional:** [How to Setup Neovim?](https://github.com/MalbrottsAsnan/kickstart.nvim/blob/master/SETUP.md '')
 
 # kickstart.nvim
 
