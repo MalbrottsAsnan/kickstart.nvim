@@ -15,8 +15,7 @@ Follow these steps to install Neovim on a new machine:
 5. Clone Neovim repo: ```git clone https://github.com/neovim/neovim```
 6. CD into directory: ```cd neovim```
 7. Checkout latest stable version: ```git checkout stable```
-8. Isolate installation: ```make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim"```
-9. Build: ```make CMAKE_BUILD_TYPE=Release```
+8. Build isolated: ```make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim" CMAKE_BUILD_TYPE=Release```
 10. Install: ```sudo make install```
 11. Add to PATH: ```export PATH="$HOME/neovim/bin:$PATH"```
 
