@@ -33,7 +33,7 @@ Linux profile settings:
 Follow these steps to uninstall Neovim from a machine:
 
 1. CD Into directory: ```cd $HOME/neovim```
-2. sudo cmake --build build/ --target uninstall
+2. Uninstall Neovim: ```sudo cmake --build build/ --target uninstall```
 
 ## Updating
 
