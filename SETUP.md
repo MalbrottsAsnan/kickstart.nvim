@@ -7,17 +7,18 @@
 Follow these steps to install Neovim on a new machine:
 
 1. Update and upgrade packages: ```sudo apt update && sudo apt upgrade```
-2. Install dependencies: ```sudo apt-get install ninja-build gettext cmake unzip curl```
+3. Install dependencies: ```sudo apt-get install ninja-build gettext cmake unzip curl```
+4. CD into home: ```cd $HOME/```
   
-    **Note:** If CMake is already installed, clear the cache before proceding: ```rm -r build/  # clear the CMake cache```
+    **Note:** If CMake is already installed, clear the cache before proceding: ```rm -r $HOME/neovim/build/```
 
-3. Clone Neovim repo: ```git clone https://github.com/neovim/neovim```
-4. CD into directory: ```cd neovim```
-5. Checkout latest stable version: ```git checkout stable```
-6. Isolate installation: ```make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim"```
-7. Build: ```make CMAKE_BUILD_TYPE=Release```
-8. Install: ```sudo make install```
-9. Add to PATH: ```export PATH="$HOME/neovim/bin:$PATH"```
+5. Clone Neovim repo: ```git clone https://github.com/neovim/neovim```
+6. CD into directory: ```cd neovim```
+7. Checkout latest stable version: ```git checkout stable```
+8. Isolate installation: ```make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim"```
+9. Build: ```make CMAKE_BUILD_TYPE=Release```
+10. Install: ```sudo make install```
+11. Add to PATH: ```export PATH="$HOME/neovim/bin:$PATH"```
 
 ## Windows terminal preferences
 
