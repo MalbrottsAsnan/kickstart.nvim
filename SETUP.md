@@ -22,7 +22,7 @@ Follow these steps to install Neovim on a new machine:
 7. Checkout latest stable version: ```git checkout stable```
 8. Build isolated: ```make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim"```
 10. Install: ```sudo make install```
-11. Add to PATH: ```export PATH="$HOME/neovim/bin:$PATH"```
+11. Add to PATH to ```~/.bashrc```: ```export PATH="$HOME/neovim/bin:$PATH"```
 
 ## Windows terminal preferences
 
