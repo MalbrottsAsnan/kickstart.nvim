@@ -34,7 +34,278 @@ Linux profile settings:
 
 Terminal action settings:
 
-In order for certain Neovim commands to work (```CTRL-]``` for example), interfering Windows Terminal keybinds needs to be removed. More on how this is done can be found on the [Terminal Setup Guide](https://learn.microsoft.com/en-us/windows/terminal/install#settings-json-file ""). Personally, I remove aa keybinds.
+In order for certain Neovim commands to work (```CTRL-]``` for example), interfering Windows Terminal keybinds needs to be removed. More on how this is done can be found on the [Terminal Setup Guide](https://learn.microsoft.com/en-us/windows/terminal/install#settings-json-file ""). Personally, I remove all keybinds by replacing the "actions": [*stuff here*] with the following array:
+
+<details><summary>Show text</summary>
+
+    "actions": [
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+w"
+        },
+        {
+            "command": "unbound",
+            "keys": "alt+f4"
+        },
+        {
+            "command": "unbound",
+            "keys": "enter"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+insert"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+c"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+minus"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+numpad_minus"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+d"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+plus"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+numpad_plus"
+        },
+        {
+            "command": "unbound",
+            "keys": "alt+down"
+        },
+        {
+            "command": "unbound",
+            "keys": "alt+left"
+        },
+        {
+            "command": "unbound",
+            "keys": "alt+right"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+left"
+        },
+        {
+            "command": "unbound",
+            "keys": "alt+up"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+t"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+1"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+2"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+3"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+4"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+5"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+6"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+7"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+8"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+9"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+n"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+tab"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+comma"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+space"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+comma"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+comma"
+        },
+        {
+            "command": "unbound",
+            "keys": "alt+space"
+        },
+        {
+            "command": "unbound",
+            "keys": "shift+insert"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+v"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+tab"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+numpad0"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+0"
+        },
+        {
+            "command": "unbound",
+            "keys": "alt+shift+down"
+        },
+        {
+            "command": "unbound",
+            "keys": "alt+shift+left"
+        },
+        {
+            "command": "unbound",
+            "keys": "alt+shift+right"
+        },
+        {
+            "command": "unbound",
+            "keys": "alt+shift+up"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+down"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+pgdn"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+end"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+home"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+up"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+pgup"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+a"
+        },
+        {
+            "command": "unbound",
+            "keys": "menu"
+        },
+        {
+            "command": "unbound",
+            "keys": "win+sc(41)"
+        },
+        {
+            "command": "unbound",
+            "keys": "alt+shift+minus"
+        },
+        {
+            "command": "unbound",
+            "keys": "alt+shift+plus"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+1"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+2"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+3"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+4"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+5"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+6"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+7"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+8"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+9"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+p"
+        },
+        {
+            "command": "unbound",
+            "keys": "f11"
+        },
+        {
+            "command": "unbound",
+            "keys": "alt+enter"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+m"
+        }
+    ],
+
+</details>
 
 ## Uninstalling
 
