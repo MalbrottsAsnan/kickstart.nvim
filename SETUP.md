@@ -35,7 +35,7 @@ Linux profile settings:
 <br>
 Terminal action settings:
 
-In order for certain Neovim commands to work (```CTRL-]``` for example), interfering Windows Terminal keybinds first need to be removed. More on how this is done can be found on the [Terminal Setup Guide](https://learn.microsoft.com/en-us/windows/terminal/install#settings-json-file ""). Personally, I remove all keybinds by replacing ```"actions": [*stuff here*]``` with the following array in the ```settings.json``` file:
+In order for certain Neovim commands to work (```CTRL-]``` for example), interfering Windows Terminal keybinds first need to be removed. More on how this is done can be found on the [Terminal Setup Guide](https://learn.microsoft.com/en-us/windows/terminal/install#settings-json-file ""). Personally, I remove all keybinds by replacing ```"actions": [ stuff here... ]``` with the following array in the ```settings.json``` file:
 
 <details><summary>Show replacement</summary>
 
