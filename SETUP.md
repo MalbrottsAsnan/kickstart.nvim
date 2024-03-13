@@ -28,9 +28,13 @@ Follow these steps to install Neovim on a new machine:
 
 Linux profile settings:
 * Color scheme: ```Campbell```
-* Font face: ```Hack Nerd Font``` - [Download](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Hack.zip "")
+* Font face: [```Hack Nerd Font```](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Hack.zip "")
 
-**Note:** Install only the ```HackNerdFont-Regular.ttf```
+**Note:** Install only the ```HackNerdFont-Regular.ttf```, you do not have to unzip the file!
+
+Terminal action settings:
+
+In order for certain Neovim commands to work (```CTRL-]``` for example), interfering Windows Terminal keybinds needs to be removed. More on how this is done can be found on the [Terminal Setup Guide](https://learn.microsoft.com/en-us/windows/terminal/install#settings-json-file "").
 
 ## Uninstalling
 
