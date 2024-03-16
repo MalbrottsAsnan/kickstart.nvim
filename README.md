@@ -27,7 +27,7 @@ If you are experiencing issues, please make sure you have the latest versions.
 > [Backup](#FAQ) your previous configuration (if any exists)
 
 External Requirements:
-- Basic utils: `git`, `make`, `unzip`, C Compiler (`gcc`), C++ Compiler ('g++)
+- Basic utils: `git`, `make`, `unzip`, C Compiler (`gcc`), C++ Compiler (`g++`)
 - [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
 - A [Nerd Font](https://www.nerdfonts.com/): optional, provides various icons
   - if you have it set `vim.g.have_nerd_font` in `init.lua` to true
