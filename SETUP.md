@@ -1,6 +1,7 @@
 # Custom Neovim Setup and Removal Guide
 ### By: MålbrottsÅsnan
 ###### [Github setup](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/GitHub-SSH-Key-Setup-Config-Ubuntu-Linux "")
+###### [g++ compiling](https://www.geeksforgeeks.org/compiling-with-g-plus-plus/ "")
 <br>
 
 ## Prerequisites
