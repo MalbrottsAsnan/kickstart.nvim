@@ -57,6 +57,12 @@ Clone kickstart.nvim:
 ```sh
 git clone https://github.com/MalbrottsAsnan/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
 ```
+If SSH Agent (Remember to configure keys first!)
+```
+git clone git@github.com:MalbrottsAsnan/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+```
+
+
 
 </details>
 
