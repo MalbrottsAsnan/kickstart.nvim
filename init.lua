@@ -1,5 +1,17 @@
---  INFO: Very specific keymaps, favourite keymaps and experimental keymaps are set to the functional keys here:
+--  INFO: External keymaps and favourite keymaps are set to the functional keys here:
 --  Then, <leader>F can list all of them with descriptions so its easy to find :)
+
+vim.keymap.set('n', '<F1>', function()
+  local current_file = vim.fn.expand '%:p:h:~:.' .. '/' .. vim.fn.expand '%:t'
+  local current_file_no_extension = vim.fn.expand '%:p:h:~:.' .. '/' .. vim.fn.expand '%:t:r'
+
+  vim.cmd('!g++ -g ' .. current_file .. ' -o ' .. current_file_no_extension .. '.exe')
+end, { desc = 'Compile current buffer with debug symbols to *filename*.exe in the same directory as the buffer' })
+
+vim.keymap.set('n', '<F2>', function()
+  vim.cmd('cd ' .. vim.fn.expand '%:p:h:~:.')
+  vim.cmd 'pwd'
+end, { desc = 'Set the current working directory to the buffer directory' })
 
 --  INFO: These info comments, not the NOTE comments, are written before most of my additions to my kickstart config!
 
@@ -676,10 +688,15 @@ require('lazy').setup({
         dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
       end, { desc = 'Debug: Set breakpoint with condition' })
 
-      vim.keymap.set('n', '<leader>d9', dap.repl.toggle, { desc = 'Debug: Toggle console' })
+      vim.keymap.set(
+        'n',
+        '<leader>d9',
+        "<cmd>lua require('dapui').float_element('console', {width = vim.api.nvim_win_get_width(0), height = vim.api.nvim_win_get_height(0)/2})<CR>",
+        { desc = 'Debug: Float console' }
+      )
 
       -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-      vim.keymap.set('n', '<leader>d6', dapui.toggle, { desc = 'Debug: See last session result' })
+      vim.keymap.set('n', '<leader>d6', dapui.toggle, { desc = 'Debug: Toggle UI (Use to see last session result)' })
       vim.keymap.set('n', '<leader>F', function()
         local interlude_pre = 'Found '
         local interlude_aft = ' functional key mappings:'
