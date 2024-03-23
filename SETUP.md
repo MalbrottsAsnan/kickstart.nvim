@@ -323,3 +323,5 @@ Follow these steps to uninstall Neovim from a machine:
 To update Neovim built from source, first remove the old version by following **Uninstalling**. After that, you can follow the **Installation** steps to install the latest stable version of Neovim.
 
 **Tip:** Before updating blindly, please compare ```nvim --version``` to the [latest stable version](https://github.com/neovim/neovim/releases/tag/stable "") to confirm whether you need an update or not.
+
+**To update the Neovim config, please pull latest from this repo!**
