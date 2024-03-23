@@ -183,8 +183,8 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<s-M-h>', '<cmd>bprevious<CR>', { desc = '[Left] buffer' })
 vim.keymap.set('n', '<s-M-l>', '<cmd>bnext<CR>', { desc = '[Right] buffer' })
 vim.keymap.set('n', '<s-M-j>', function()
-  vim.ui.select({ 'Close', 'No' }, { prompt = 'Close current buffer?' }, function(choice)
-    if choice == 'Close' then
+  vim.ui.input({ prompt = 'Close buffer? Y/N ' }, function(input)
+    if input == 'y' or input == 'Y' then
       vim.api.nvim_exec2('bd', {})
     end
   end)
@@ -274,6 +274,29 @@ require('lazy').setup({
   --
   --  This is equivalent to:
   --    require('Comment').setup({})
+
+  --  INFO: Autopairs are king WTF
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = true,
+    -- use opts = {} for passing setup options
+    -- this is equalent to setup({}) function
+  },
+
+  --  INFO: Neat plugin for changing the input UI, but since telescope for select is already enabled elsewhere this it is disabled here.
+  {
+    'stevearc/dressing.nvim',
+    opts = {
+      input = {
+        title_pos = 'center',
+        relative = 'win',
+      },
+      select = {
+        enabled = false,
+      },
+    },
+  },
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
@@ -570,6 +593,12 @@ require('lazy').setup({
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+
+      --  INFO: Added folding capabilities
+      capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+      }
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -922,6 +951,25 @@ require('lazy').setup({
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
         return '%2l:%-2v'
+      end
+
+      --  INFO: Overwrite filename with session name + cwd
+      ---@diagnostic disable-next-line: duplicate-set-field
+      statusline.section_filename = function()
+        local session = vim.fn.fnamemodify(vim.v.this_session, ':t')
+        if session == '' then
+          session = 'No session'
+        end
+
+        local ends = vim.fn.line '$' - 1
+        local starts = vim.fn.line '.' - 1
+        local count = math.floor(starts * 100 / ends)
+
+        if count == 'nan' then
+          count = 0
+        end
+
+        return '| loc: ' .. count .. '％' .. ' | csh: ' .. session .. ' | cwd: ' .. vim.fn.getcwd() .. ' |'
       end
 
       -- ... and there is more!
