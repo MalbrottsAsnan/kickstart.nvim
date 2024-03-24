@@ -115,6 +115,22 @@ vim.g.have_nerd_font = true
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+-- INFO: Treesitter foldoption since UFO lsp folding is buggy
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldlevelstart = 99
+-- vim.o.fillchars = 'fold: '
+
+function _G.custom_fold_text()
+  local line = vim.fn.getline(vim.v.foldstart)
+
+  local line_count = vim.v.foldend - vim.v.foldstart + 1
+
+  return line .. ' ... ' .. line_count .. ' lines folded '
+end
+
+vim.opt.foldtext = 'v:lua.custom_fold_text()'
+
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, for help with jumping.
@@ -594,11 +610,12 @@ require('lazy').setup({
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-      --  INFO: Added folding capabilities
-      capabilities.textDocument.foldingRange = {
-        dynamicRegistration = false,
-        lineFoldingOnly = true,
-      }
+      --  TEST: Probably unnecessary
+      -- --  INFO: Added folding capabilities
+      -- capabilities.textDocument.foldingRange = {
+      --   dynamicRegistration = false,
+      --   lineFoldingOnly = true,
+      -- }
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
