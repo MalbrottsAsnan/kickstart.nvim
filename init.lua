@@ -91,18 +91,34 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+-- INFO: Treesitter foldoption since UFO lsp folding is buggy
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldlevelstart = 99
+-- vim.o.fillchars = 'fold: '
+
+function _G.custom_fold_text()
+  local line = vim.fn.getline(vim.v.foldstart)
+
+  local line_count = vim.v.foldend - vim.v.foldstart + 1
+
+  return line .. ' ... ' .. line_count .. ' lines folded '
+end
+
+vim.opt.foldtext = 'v:lua.custom_fold_text()'
+
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -142,6 +158,10 @@ vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+-- INFO: Fat cursor and nice colors
+vim.opt.guicursor = ''
+vim.opt.termguicolors = true
+
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
@@ -162,10 +182,34 @@ vim.opt.scrolloff = 10
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
+vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+--  INFO: Change tabs
+vim.keymap.set('n', '<s-M-h>', '<cmd>bprevious<CR>', { desc = '[Left] buffer' })
+vim.keymap.set('n', '<s-M-l>', '<cmd>bnext<CR>', { desc = '[Right] buffer' })
+vim.keymap.set('n', '<s-M-j>', function()
+  vim.ui.input({ prompt = 'Close buffer? Y/N ' }, function(input)
+    if input == 'y' or input == 'Y' then
+      vim.api.nvim_exec2('bd', {})
+    end
+  end)
+end, { desc = '[Close] buffer' })
+--  INFO: CTRL-ALT-k for mini.files!
+
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+
+vim.keymap.set('n', '<leader>E', vim.diagnostic.open_float, { desc = '[E]rror messages (Open diagnostic)' })
+vim.keymap.set('n', '<leader>Q', vim.diagnostic.setloclist, { desc = '[Q]uickfix list (Open diagnostic)' })
+
+-- Greatest remap ever
+vim.keymap.set('x', '<leader>P', '"_dP', { desc = '[P]reserve [P]aste' })
+vim.keymap.set('n', '<leader>P', '"_dP', { desc = '[P]reserve [P]aste' })
+
+vim.keymap.set('n', '<leader>D', '"_d', { desc = '[D]elete [V]oid' })
+vim.keymap.set('v', '<leader>D', '"_d', { desc = '[D]elete [V]oid' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -176,10 +220,10 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
