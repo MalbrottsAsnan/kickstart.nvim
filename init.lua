@@ -512,6 +512,12 @@ require('lazy').setup({
       'hrsh7th/cmp-nvim-lsp',
     },
     config = function()
+      --  INFO: Round everything :)
+      require('lspconfig.ui.windows').default_options = { border = 'rounded' }
+
+      vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+        border = 'rounded',
+      })
       -- Brief aside: **What is LSP?**
       --
       -- LSP is an initialism you've probably heard, but might not understand what it is.
@@ -569,24 +575,28 @@ require('lazy').setup({
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
-          map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+          map('<leader>ld', require('telescope.builtin').lsp_type_definitions, '[D]efinition [T]ype')
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
-          map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+          map('<leader>lds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
-          map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+          map('<leader>lws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
-          map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+          map('<leader>lr', vim.lsp.buf.rename, '[R]ename')
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
-          map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
+          map('<leader>lc', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
 
+          -- Opens a popup that displays documentation about the word under your cursor
+          --  See `:help K` for why this keymap
+          map('K', vim.lsp.buf.hover, 'Hover Documentation')
+              
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -662,7 +672,7 @@ require('lazy').setup({
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
-        -- rust_analyzer = {},
+        rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -753,6 +763,8 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+
+        rust = { 'rustfmt', lsp_format = "fallback" }
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -782,12 +794,12 @@ require('lazy').setup({
           -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:
           --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
+          {
+             'rafamadriz/friendly-snippets',
+             config = function()
+               require('luasnip.loaders.from_vscode').lazy_load()
+             end,
+           },
         },
       },
       'saadparwaiz1/cmp_luasnip',
@@ -883,13 +895,13 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
+    'rebelot/kanagawa.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'kanagawa'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
@@ -934,6 +946,64 @@ require('lazy').setup({
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
+      
+        --  INFO: Animated environment
+      --  This is eye candy :)
+      require('mini.animate').setup { cursor = { enable = false } }
+
+      --  INFO: Nice tabline
+      require('mini.tabline').setup()
+
+      --  INFO: Add move-functionality
+      --  Alt (Meta) + hjkl
+      require('mini.move').setup()
+
+      --  INFO: Add session-functionality
+      --  :mksession ~/session_name
+      --  This creates a file in user home directory which can later be deleted
+      --  Works with mini.starter!
+      require('mini.sessions').setup { file = '' }
+
+      --  INFO: Session commands
+      vim.api.nvim_create_user_command('MinishGo', function()
+        local sessions = require 'mini.sessions'
+        sessions.select('read', { force = false })
+      end, { desc = 'Select session in popup' })
+
+      vim.api.nvim_create_user_command('MinishMake', function(args)
+        local sessions = require 'mini.sessions'
+        local name = string.match(args['args'], '([^%s]+)')
+        sessions.write(name, { force = false })
+        -- sessions.select('write', { force = false })
+      end, { desc = 'Create session, overriding disabled', nargs = 1 })
+
+      vim.api.nvim_create_user_command('MinishPop', function()
+        local sessions = require 'mini.sessions'
+        sessions.select('delete', { force = true })
+      end, { desc = 'Delete session in popup' })
+
+      --  INFO: Add better file view and edit
+      --  check :h mini.files, this is a cool plugin
+      require('mini.files').setup()
+      vim.api.nvim_set_keymap('n', '<s-M-k>', ':lua MiniFiles.open()<CR>', { desc = '[F]ile explorer' })
+
+      --  INFO: Add starters screen
+      --  nvim with no arguments
+      local starter = require 'mini.starter'
+      starter.setup {
+        items = {
+          -- Use this if you set up 'mini.sessions'
+          starter.sections.sessions(3, true),
+
+          starter.sections.telescope(),
+
+          starter.sections.recent_files(10, false),
+        },
+        content_hooks = {
+          starter.gen_hook.adding_bullet(),
+          starter.gen_hook.aligning('center', 'center'),
+        },
+      }
     end,
   },
   { -- Highlight, edit, and navigate code
@@ -953,6 +1023,17 @@ require('lazy').setup({
         additional_vim_regex_highlighting = { 'ruby' },
       },
       indent = { enable = true, disable = { 'ruby' } },
+
+      --  INFO: Incremental selection!
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = '<CR>', -- set to `false` to disable one of the mappings
+          node_incremental = '<CR>',
+          scope_incremental = '<TAB>',
+          node_decremental = '<S-TAB>',
+        },
+      },
     },
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
@@ -960,6 +1041,44 @@ require('lazy').setup({
     --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+  },
+
+  --  INFO: Added treesitter context to se what scope you are working in
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    config = function()
+      require('treesitter-context').setup {
+        max_lines = 5,
+        separator = ' ',
+      }
+    end,
+  },
+
+    --  INFO: UNDO TREEEEES
+  {
+    'mbbill/undotree',
+    lazy = false,
+    config = function()
+      vim.api.nvim_set_keymap('n', '<Leader>U', ':UndotreeToggle<CR>', { noremap = true, silent = true, desc = '[U]ndo tree' })
+
+      local directory = vim.fn.stdpath 'data' .. '/undodir'
+
+      if vim.fn.isdirectory(directory) ~= 1 then
+        pcall(vim.fn.mkdir, directory, 'p')
+      end
+
+      vim.opt.undodir = directory
+      -- vim.opt.undofile is set elsewhere
+    end,
+  },
+
+  --  INFO: FUGITIVE
+  {
+    'tpope/vim-fugitive',
+    lazy = false,
+    config = function()
+      vim.api.nvim_set_keymap('n', '<Leader>G', ':Git<CR><C-w>7-', { noremap = true, silent = true, desc = '[G]it status' })
+    end,
   },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
@@ -972,7 +1091,7 @@ require('lazy').setup({
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.neo-tree',
