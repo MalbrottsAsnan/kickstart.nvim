@@ -78,8 +78,10 @@ vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- INFO: Fat cursor and nice colors
+-- HACK: Cursor always stays fat :)
 vim.opt.guicursor = 'a:block'
+
+-- HACK: Nice 24-bit colors if terminal emulator supports it!
 vim.opt.termguicolors = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
