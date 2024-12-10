@@ -1,6 +1,9 @@
 --[[
 
 TODO: Add nvim-ufo with lsp and or treesitter
+TODO: Document the different keychains, see Teams screenshot
+TODO: nvim-dap/nvim-dap-ui???
+TODO: Crossreference master, archive and origin once more
 
 Kickstart Guide:
 
