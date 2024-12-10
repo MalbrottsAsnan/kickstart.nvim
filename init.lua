@@ -3,12 +3,12 @@
 Kickstart Guide:
 
   NOTE: The very first thing you should do is to run the command `:Tutor` in Neovim.
-  
+
   Next, run and read ':help'. This should be the first place you go to look when you're
   stuck or confused with something. The keymap "<space>sh" is also provided to [s]earch 
   the [h]help documentation, which is very useful when you're not exactly sure of what
   you're looking for.
-  
+
   NOTE: If you experience any errors while trying to install kickstart, run `:checkhealth`!
 
 I hope you enjoy your Neovim journey,
