@@ -32,23 +32,6 @@ vim.g.have_nerd_font = true
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
--- HACK: Treesitter foldoption since UFO lsp folding is buggy
-vim.o.foldmethod = 'expr'
-vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.o.foldlevelstart = 99
--- vim.o.fillchars = 'fold: '
-
--- HACK: Custom fold text. Example: "function_G.custom_fold_text() ... 6 lines folded .........."
-function _G.custom_fold_text()
-  local line = vim.fn.getline(vim.v.foldstart)
-
-  local fold_count = vim.v.foldend - vim.v.foldstart
-
-  return line .. ' ... ' .. fold_count .. ' lines folded '
-end
-
-vim.opt.foldtext = 'v:lua.custom_fold_text()'
-
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
