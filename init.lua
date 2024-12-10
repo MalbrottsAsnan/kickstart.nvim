@@ -4,6 +4,8 @@ TODO: Add nvim-ufo with lsp and or treesitter
 TODO: Document the different keychains, see Teams screenshot
 TODO: nvim-dap/nvim-dap-ui???
 TODO: Crossreference master, archive and origin once more
+TODO: Keep an updated list of all keymaps in the top of the init file here
+TODO: Review all keymap descriptions (lowercase vs uppercase for example)
 
 Kickstart Guide:
 
