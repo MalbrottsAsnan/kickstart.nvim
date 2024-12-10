@@ -1,5 +1,7 @@
 --[[
 
+TODO: Add nvim-ufo with lsp and or treesitter
+
 Kickstart Guide:
 
   NOTE: The very first thing you should do is to run the command `:Tutor` in Neovim.
