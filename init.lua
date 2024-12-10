@@ -14,6 +14,8 @@ Kickstart Guide:
 I hope you enjoy your Neovim journey,
 - TJ
 
+HACK: Stuff marked with this are custom configs and code in addition to the changeable presets!
+
 --]]
 
 -- Set <space> as the leader key
@@ -30,12 +32,13 @@ vim.g.have_nerd_font = true
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
--- INFO: Treesitter foldoption since UFO lsp folding is buggy
+-- HACK: Treesitter foldoption since UFO lsp folding is buggy
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.o.foldlevelstart = 99
 -- vim.o.fillchars = 'fold: '
 
+-- HACK: Custom fold text. Example: "function_G.cutom_fold_text() ... 6 lines folded .........."
 function _G.custom_fold_text()
   local line = vim.fn.getline(vim.v.foldstart)
 
