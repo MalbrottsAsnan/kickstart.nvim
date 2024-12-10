@@ -109,7 +109,7 @@ vim.opt.scrolloff = 10
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
---  INFO: Change tabs
+--  HACK: Change tabs (buffers)
 vim.keymap.set('n', '<s-M-h>', '<cmd>bprevious<CR>', { desc = '[Left] buffer' })
 vim.keymap.set('n', '<s-M-l>', '<cmd>bnext<CR>', { desc = '[Right] buffer' })
 vim.keymap.set('n', '<s-M-j>', function()
