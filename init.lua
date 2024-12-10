@@ -39,9 +39,9 @@ vim.o.foldlevelstart = 99
 function _G.custom_fold_text()
   local line = vim.fn.getline(vim.v.foldstart)
 
-  local line_count = vim.v.foldend - vim.v.foldstart + 1
+  local fold_count = vim.v.foldend - vim.v.foldstart
 
-  return line .. ' ... ' .. line_count .. ' lines folded '
+  return line .. ' ... ' .. fold_count .. ' lines folded '
 end
 
 vim.opt.foldtext = 'v:lua.custom_fold_text()'
