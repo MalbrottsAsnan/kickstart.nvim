@@ -79,7 +79,7 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- INFO: Fat cursor and nice colors
-vim.opt.guicursor = ''
+vim.opt.guicursor = 'a:block'
 vim.opt.termguicolors = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
