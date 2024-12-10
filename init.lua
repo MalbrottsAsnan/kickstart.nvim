@@ -119,7 +119,6 @@ vim.keymap.set('n', '<s-M-j>', function()
     end
   end)
 end, { desc = '[Close] buffer' })
---  INFO: CTRL-ALT-k for mini.files!
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
