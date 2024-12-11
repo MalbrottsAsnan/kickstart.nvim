@@ -7,6 +7,8 @@ TODO: Crossreference master, archive and origin once more
 TODO: Keep an updated list of all keymaps in the top of the init file here
 TODO: Review all keymap descriptions (lowercase vs uppercase for example)
 
+NOTE: Inspiration with tmux https://dev.to/nexxeln/my-developer-workflow-using-wsl-tmux-and-neovim-55f5
+
 Kickstart Guide:
 
   NOTE: The very first thing you should do is to run the command `:Tutor` in Neovim.
