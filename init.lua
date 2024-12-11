@@ -115,8 +115,8 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<s-M-h>', '<cmd>bprevious<CR>', { desc = '[Left] buffer' })
 vim.keymap.set('n', '<s-M-l>', '<cmd>bnext<CR>', { desc = '[Right] buffer' })
 vim.keymap.set('n', '<s-M-j>', function()
-  vim.ui.input({ prompt = 'Close buffer? Y/n ' }, function(input)
-    if input == 'y' or input == 'Y' or input == nil then
+  vim.ui.input({ prompt = 'Close buffer? [Y/n] ' }, function(input)
+    if input == 'y' or input == 'Y' or input == '' then
       vim.api.nvim_exec2('bd', {})
     end
   end)
